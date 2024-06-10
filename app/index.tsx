@@ -1,18 +1,25 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { hp, wp } from '@/helper/common';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { theme } from '@/constants/theme';
+import { useRouter } from 'expo-router';
+import { Image } from 'expo-image';
 
 export default function WelcomeScreen() {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.replace('/home');
+  };
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       <Image
         source={require('../assets/images/welcome.png')}
         style={styles.bgImg}
-        resizeMode="cover"
+        contentFit="cover"
       />
       <Animated.View style={{ flex: 1 }} entering={FadeInDown.duration(600)}>
         <LinearGradient
@@ -40,7 +47,7 @@ export default function WelcomeScreen() {
             Every pixel tell the story
           </Animated.Text>
           <Animated.View entering={FadeInDown.delay(600).springify()}>
-            <Pressable style={styles.startButton}>
+            <Pressable style={styles.startButton} onPress={handleGetStarted}>
               <Text style={styles.startText}>Get Started</Text>
             </Pressable>
           </Animated.View>
