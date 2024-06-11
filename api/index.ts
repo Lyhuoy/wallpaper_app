@@ -1,6 +1,4 @@
-const API_KEY = '44250737-f2f81313f75de322e299156af';
-
-const API_URL = `https://pixabay.com/api/?key=${API_KEY}`;
+const API_URL = `https://pixabay.com/api/?key=${process.env.API_KEY}`;
 
 const formatUrl = (param: any) => {
   let url = API_URL + '&per_page=25&safesearch=false&editors_choice=true';
